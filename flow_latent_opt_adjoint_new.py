@@ -45,7 +45,13 @@ def optimize_adjoint(integrator="midpoint", step_size=0.025, device="cuda"):
     for i in tqdm(range(200)):
         optimizer.zero_grad()
         batch_t = torch.linspace(0., 1., 10).to(device)
-        x_sample = solver.sample(batch_t, z0, method=integrator, step_size=step_size, return_intermediates=False)
+        x_sample = solver.sample(
+            time_grid=batch_t,
+            x_init=z0,
+            method=integrator,
+            step_size=step_size,
+            return_intermediates=False
+        )
         x_sample.requires_grad_(True)
 
         loss = ((torch.matmul(x_sample.reshape(1, -1), A.T) - y_noise)**2).sum() + 0.01 * torch.mean(z0**2)
