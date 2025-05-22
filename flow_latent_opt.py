@@ -86,7 +86,10 @@ A = dataset.A.to(device)
 ### 2. Setup forward operator A 
 # simple compressed sensing from 784 -> 256 
 # with 1% relative additive Gaussian noise
-A = torch.randn(256, 28*28).to(device)/256
+
+# A = torch.randn(256, 28*28).to(device)/256
+# CT_baseline replace with: A = dataset.A.to(device)
+
 #A = torch.eye(28*28).to(device)
 
 y = torch.matmul(x.reshape(x.shape[0], -1), A.T )
