@@ -43,7 +43,7 @@ torch.manual_seed(1)
 
 device = "cuda"
 
-
+#Consistent with the modification of opt
 model_cfg = {"in_channels": 1,
         "model_channels": 16,
         "out_channels": 1,
