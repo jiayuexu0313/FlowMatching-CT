@@ -127,7 +127,7 @@ for i in tqdm(range(200)):
 
 	loss.backward()
 	optimizer.step()
-	torch.cuda.empty_cache()
+	torch.cuda.empty_cache() #Solve the indentation problem
 	if i % 4 == 0 and i > 0:
 		x_sample = torch.clamp(x_sample, 0, 1)
 		print(x_sample.shape)

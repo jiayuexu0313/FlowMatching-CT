@@ -223,7 +223,7 @@ for i in tqdm(range(200)):
 	print("Time for adjoint pass: ", time_end - time_start,"s")
 	z0.grad = lambda_ + 0.005 * z0
 	optimizer.step()
-	torch.cuda.empty_cache()
+	torch.cuda.empty_cache() #Solve the indentation problem
 	if i % 4 == 0 and i > 0:
 		x_sample = torch.clamp(x_sample, 0, 1)
 
