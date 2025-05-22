@@ -127,8 +127,7 @@ for i in tqdm(range(200)):
 
 	loss.backward()
 	optimizer.step()
-        torch.cuda.empty_cache() # 释放碎片化显存
-      
+	torch.cuda.empty_cache()
 	if i % 4 == 0 and i > 0:
 		x_sample = torch.clamp(x_sample, 0, 1)
 		print(x_sample.shape)
