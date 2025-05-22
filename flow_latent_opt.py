@@ -27,6 +27,10 @@ from flow_matching.utils import ModelWrapper
 
 from models.unet import UNetModel
 
+# 允许 CUDA 分段扩展，减少碎片化
+import os
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+
 """
 In this script the goal is to find the latent vector z which corresponds to an 
 image x, by minimizing 
@@ -39,16 +43,16 @@ device = "cuda"
 
 
 model_cfg = {"in_channels": 1,
-        "model_channels": 32,
+        "model_channels": 16,  # 原 32 ➔ 16
         "out_channels": 1,
-        "num_res_blocks": 4,
-        "attention_resolutions": [2],
+        "num_res_blocks": 2, # 原 4 ➔ 2
+        "attention_resolutions": [], # 关闭 attention
         "dropout": 0.0,
-        "channel_mult": [2, 2, 2],
+        "channel_mult": [1, 1, 1], # 原 [2,2,2] ➔ [1,1,1]
         "conv_resample": False,
         "dims": 2,
         "num_classes": None,
-        "use_checkpoint": False,
+        "use_checkpoint": True, # 启用梯度检查点
         "num_heads": 1,
         "num_head_channels": -1,
         "num_heads_upsample": -1,
@@ -112,7 +116,7 @@ optimizer = torch.optim.Adam([z0], lr=1e-1)
 for i in tqdm(range(200)):
 	print("\n  --------------- ITERATION: ", i)
 	optimizer.zero_grad()
-	batch_t = torch.linspace(0., 1., 10).to(device)
+	batch_t = torch.linspace(0., 1., 5).to(device)  # 步数 10 ➔ 5，减少内存
 
 	x_sample = solver.sample(time_grid=batch_t, x_init=z0, method='midpoint', step_size=step_size, return_intermediates=False, enable_grad=True)  # sample from the model
     
@@ -123,7 +127,8 @@ for i in tqdm(range(200)):
 
 	loss.backward()
 	optimizer.step()
-
+        torch.cuda.empty_cache() # 释放碎片化显存
+      
 	if i % 4 == 0 and i > 0:
 		x_sample = torch.clamp(x_sample, 0, 1)
 		print(x_sample.shape)

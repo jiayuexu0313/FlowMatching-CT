@@ -29,6 +29,10 @@ from flow_matching.utils import ModelWrapper
 
 from models.unet import UNetModel
 
+# 允许 CUDA 分段扩展，减少碎片化
+import os
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+
 """
 In this script the goal is to find the latent vector z which corresponds to an 
 image x, by minimizing 
@@ -39,18 +43,18 @@ torch.manual_seed(1)
 
 device = "cuda"
 
-
+#Consistent with the modification of opt
 model_cfg = {"in_channels": 1,
-        "model_channels": 32,
+        "model_channels": 16,
         "out_channels": 1,
-        "num_res_blocks": 4,
-        "attention_resolutions": [2],
+        "num_res_blocks": 2,
+        "attention_resolutions": [],
         "dropout": 0.0,
-        "channel_mult": [2, 2, 2],
+        "channel_mult": [1, 1, 1],
         "conv_resample": False,
         "dims": 2,
         "num_classes": None,
-        "use_checkpoint": False,
+        "use_checkpoint": True,
         "num_heads": 1,
         "num_head_channels": -1,
         "num_heads_upsample": -1,
@@ -190,7 +194,7 @@ plt.show()
 for i in tqdm(range(200)):
 	print("\n  --------------- ITERATION: ", i)
 	optimizer.zero_grad()
-	batch_t = torch.linspace(0., 1., 10).to(device)
+	batch_t = torch.linspace(0., 1., 5).to(device) # 步数 10 ➔ 5
 
 	x_sample = solver.sample(time_grid=batch_t, x_init=z0, method='midpoint', step_size=step_size, return_intermediates=False, enable_grad=False)  # sample from the model
 	x_sample.requires_grad_(True)
@@ -198,7 +202,7 @@ for i in tqdm(range(200)):
 	print(loss.item())
 
 	lambda_ = torch.autograd.grad(loss, x_sample, create_graph=True)[0]
-	n_steps = 40
+	n_steps = 20   # 伴随法反向 ODE 步数,原 40 ➔ 20
 	dt = 1. / n_steps
 	t = torch.tensor(1.0).to(device)
 	xt = x_sample.clone().detach()
@@ -219,6 +223,8 @@ for i in tqdm(range(200)):
 	print("Time for adjoint pass: ", time_end - time_start,"s")
 	z0.grad = lambda_ + 0.005 * z0
 	optimizer.step()
+    torch.cuda.empty_cache()
+
 	if i % 4 == 0 and i > 0:
 		x_sample = torch.clamp(x_sample, 0, 1)
 
