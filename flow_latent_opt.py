@@ -1,23 +1,21 @@
 import torch 
 import torch.nn as nn
 
-from torchvision.datasets import MNIST
-import torchvision.transforms as transforms
+# from torchvision.datasets import MNIST
+# import torchvision.transforms as transforms
+# CT_baseline replace with:
+from ct_dataset import CTDataset
+
 import matplotlib.pyplot as plt 
 
 
 from tqdm import tqdm 
 
-
-
 import numpy as np 
 from tqdm import tqdm 
 
-import torch
 from torch.optim import Adam
 from torch.utils.data import DataLoader
-import torchvision.transforms as transforms
-from torchvision.datasets import MNIST
 
 import matplotlib.pyplot as plt 
 
@@ -73,10 +71,16 @@ class WrappedModel(ModelWrapper):
 wrapped_vf = WrappedModel(vf)
 
 device = "cuda"
-dataset = MNIST('.', train=False, transform=transforms.ToTensor(), download=True)
 
-x = dataset[1][0].unsqueeze(0)
-x = x.to(device)
+# dataset = MNIST('.', train=False, transform=transforms.ToTensor(), download=True)
+# x = dataset[1][0].unsqueeze(0)
+# x = x.to(device)
+# CT_baseline replace with:
+dataset = CTDataset('/content/drive/MyDrive/CT_dataset_128.pt')
+x = dataset[0][1].reshape(1, 1, 128, 128).to(device)
+y_noise = dataset[0][0].unsqueeze(0).to(device)
+A = dataset.A.to(device)
+
 
 
 ### 2. Setup forward operator A 
@@ -93,7 +97,10 @@ step_size = 0.05
 
 solver = ODESolver(velocity_model=wrapped_vf)  # create an ODESolver class
 
-init_z = torch.randn(1, *[1, 28, 28], device=device) 
+# init_z = torch.randn(1, *[1, 28, 28], device=device) 
+# CT_baseline replace with:
+init_z = torch.randn(1, 1, 128, 128, device=device)
+
 z0 = torch.nn.Parameter(torch.clone(init_z))
 
 
