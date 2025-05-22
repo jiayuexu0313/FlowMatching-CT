@@ -43,7 +43,7 @@ device = "cuda"
 
 
 model_cfg = {"in_channels": 1,
-        "model_channels": 16,  # 原 32 ➔ 16
+        "model_channels": 32,   # change back
         "out_channels": 1,
         "num_res_blocks": 2, # 原 4 ➔ 2
         "attention_resolutions": [], # 关闭 attention
