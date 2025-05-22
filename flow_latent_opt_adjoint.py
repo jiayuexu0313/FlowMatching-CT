@@ -111,7 +111,7 @@ fig, (ax1, ax2) = plt.subplots(1,2)
 ax1.imshow(x[0,0].cpu().numpy(), cmap="gray")
 ax1.set_title("GT")
 
-ax2.imshow(x_rec.reshape(28,28).cpu().numpy(), cmap="gray")
+ax2.imshow(x_rec.reshape(128,128).cpu().numpy(), cmap="gray")  # CT_baseline_modify2':reshape size
 ax2.set_title("Pesudo")
 
 plt.show()
