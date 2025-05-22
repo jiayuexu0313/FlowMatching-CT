@@ -45,7 +45,7 @@ device = "cuda"
 
 #Consistent with the modification of opt
 model_cfg = {"in_channels": 1,
-        "model_channels": 32,
+        "model_channels": 32, # change back
         "out_channels": 1,
         "num_res_blocks": 2,
         "attention_resolutions": [],
