@@ -1,0 +1,24 @@
+attention_resolutions:
+- 8
+channel_mult:
+- 1
+- 2
+- 2
+- 4
+conv_resample: false
+dims: 2
+dropout: 0.0
+in_channels: 1
+max_period: 2.0
+model_channels: 32
+num_classes: null
+num_head_channels: -1
+num_heads: 1
+num_heads_upsample: -1
+num_res_blocks: 2
+out_channels: 1
+resblock_updown: false
+use_checkpoint: true
+use_new_attention_order: true
+use_scale_shift_norm: true
+with_fourier_features: false
