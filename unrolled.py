@@ -41,7 +41,7 @@ def optimise_z(physics, y, sampler_steps, iter_max, device, weight_path="flow_ma
     opt = torch.optim.Adam([z], lr=1e-1)
     losses = []
 
-
+    step_size = 1.0 / sampler_steps
     for i in range(iter_max):
         opt.zero_grad()
         t_grid = torch.linspace(0, 1, sampler_steps, device=device)
@@ -49,7 +49,7 @@ def optimise_z(physics, y, sampler_steps, iter_max, device, weight_path="flow_ma
             time_grid=t_grid,
             x_init=z,
             method="midpoint",
-            step_size=0.05,
+            step_size=step_size,
             enable_grad=True
         )
         x_hat.requires_grad_(True)
@@ -67,7 +67,7 @@ def optimise_z(physics, y, sampler_steps, iter_max, device, weight_path="flow_ma
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--angles",       type=int,   required=True,
-                   help="CT projection Angle")
+                   help="CT projection angle")
     p.add_argument("--noise",        type=float, default=0.0,
                    help="relative noise ratio")
     p.add_argument("--sampler_steps",type=int,   default=6,
@@ -88,10 +88,10 @@ def main():
     device = args.device
 
 
-    angles_rad = torch.linspace(0, np.pi, args.angles, device=device)
+    angles_deg = torch.linspace(0, 180, args.angles, device=device)
     physics = Tomography(
         img_shape=(1,128,128),
-        angles=angles_rad,
+        angles=angles_deg,
         geometry="parallel",
         img_width=128,
         device=device
