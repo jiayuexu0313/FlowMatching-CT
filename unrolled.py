@@ -5,6 +5,7 @@ import numpy as np
 import yaml
 import matplotlib.pyplot as plt
 import pandas as pd
+import random
 
 from deepinv.physics import Tomography
 from ct_dataset import CTDataset
@@ -82,6 +83,8 @@ def main():
                    help="the number of iterations")
     p.add_argument("--device",       choices=["cpu","cuda"],
                    default="cuda")
+    p.add_argument("--seed",         type=int,   default=42,
+                   help="random seed for reproducibility") # set the initial seed
     p.add_argument("--output_dir",   type=str,
                    default="results")
     p.add_argument("--weight_path",  type=str,
@@ -89,6 +92,13 @@ def main():
     p.add_argument("--cfg_path",     type=str,
                    default="flow_matching_ct.yaml")
     args = p.parse_args()
+
+    # set seeds
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    if args.device == "cuda":
+        torch.cuda.manual_seed_all(args.seed)
 
     os.makedirs(args.output_dir, exist_ok=True)
     device = args.device
@@ -126,7 +136,7 @@ def main():
     mse  = compute_mse(x_rec, x_gt)
     psnr = compute_psnr(x_rec, x_gt)
 
-    tag = f"ang{args.angles}_n{int(args.noise*100)}"
+    tag = f"ang{args.angles}_n{int(args.noise*100)}_seed{args.seed}"
     od  = os.path.join(args.output_dir, tag)
     os.makedirs(od, exist_ok=True)
 
