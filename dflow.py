@@ -47,21 +47,22 @@ def load_model(device, cfg_path, weight_path):
 
 def get_data(device):
     physics = build_physics(device)
-    ds      = CTDataset(
+    ds = CTDataset(
         tensor_path="/content/drive/MyDrive/CT_dataset_128.pt",
         measurement_dim=ANGLES
     )
     y_full, x_flat = ds[0]
     x_gt = x_flat.view(1,1,128,128).to(device)
-    y    = physics(x_gt)
+    y = physics(x_gt)
     sigma = torch.mean(torch.abs(y)) * NOISE
-    y    = y + sigma * torch.randn_like(y)
+    y = y + sigma * torch.randn_like(y)
     y = y.squeeze(0).squeeze(0).transpose(0,1)
     return physics, y, x_gt
 
 def optimise_z_unrolled(physics, y, x_gt, wrapped, iter_max, device, z):
     solver = ODESolver(velocity_model=wrapped)
-    opt    = torch.optim.Adam([z], lr=1e-1)
+    opt  = torch.optim.Adam([z], lr=1e-1)
+    losses, psnrs = [], []
     for _ in range(iter_max):
         opt.zero_grad()
         t_grid = torch.linspace(0,1,STEPS,device=device)
@@ -76,12 +77,18 @@ def optimise_z_unrolled(physics, y, x_gt, wrapped, iter_max, device, z):
         loss  = ((ypred - y)**2).sum() + 0.01*(z**2).mean()
         loss.backward()
         opt.step()
-    return x_hat.clamp(0,1).detach()
+        # record loss
+        losses.append(loss.item())
+        with torch.no_grad():
+            rec_temp = x_hat.clamp(0,1).detach()
+            psnrs.append(compute_psnr(rec_temp, x_gt))
+    return x_hat.clamp(0,1).detach(), losses, psnrs
 
 def optimise_z_dflow(physics, y, x_gt, wrapped, iter_max, device, z):
     solver = ODESolver(velocity_model=wrapped)
     opt    = torch.optim.LBFGS([z], lr=1.0, max_iter=20)
     t_grid = torch.linspace(0,1,STEPS,device=device)
+    losses, psnrs = [], []
     def closure():
         opt.zero_grad()
         x_hat = solver.sample(
@@ -94,6 +101,11 @@ def optimise_z_dflow(physics, y, x_gt, wrapped, iter_max, device, z):
         ypred = physics(x_hat).squeeze(0).squeeze(0).transpose(0,1)
         loss  = ((ypred - y)**2).sum() + 0.01*(z**2).mean()
         loss.backward()
+        # record loss
+        losses.append(loss.item())
+        with torch.no_grad():
+            rec_temp = x_hat.clamp(0,1).detach()
+            psnrs.append(compute_psnr(rec_temp, x_gt))
         return loss
     opt.step(closure)
     with torch.no_grad():
@@ -104,11 +116,12 @@ def optimise_z_dflow(physics, y, x_gt, wrapped, iter_max, device, z):
             step_size=1/STEPS,
             enable_grad=False
         )
-    return x_hat.clamp(0,1).detach()
+    return x_hat.clamp(0,1).detach(), losses, psnrs
 
 def optimise_z_adjoint(physics, y, x_gt, wrapped, iter_max, device, z):
     solver = ODESolver(velocity_model=wrapped)
     opt    = torch.optim.Adam([z], lr=1e-1)
+    losses, psnrs = [], []
     for _ in range(iter_max):
         opt.zero_grad()
         t_grid = torch.linspace(0,1,STEPS,device=device)
@@ -137,7 +150,12 @@ def optimise_z_adjoint(physics, y, x_gt, wrapped, iter_max, device, z):
             xt = xt.detach()
         z.grad = lam + 0.01*z
         opt.step()
-    return x_hat.clamp(0,1).detach()
+        # record loss
+        losses.append(loss.item())
+        with torch.no_grad():
+            rec_temp = x_hat.clamp(0,1).detach()
+            psnrs.append(compute_psnr(rec_temp, x_gt))
+    return x_hat.clamp(0,1).detach(), losses, psnrs
 
 def run_once(seed, method, init, cfg_path, weight_path,
              iter_max, device, output_dir):
@@ -168,7 +186,7 @@ def run_once(seed, method, init, cfg_path, weight_path,
     if method=="unrolled":
         if device=="cuda":
             torch.cuda.reset_peak_memory_stats()
-        rec = optimise_z_unrolled(physics, y, x_gt, wrapped, iter_max, device, z0)
+        rec, losses, psnrs = optimise_z_unrolled(physics, y, x_gt, wrapped, iter_max, device, z0)
         if device=="cuda":
             peak = torch.cuda.max_memory_allocated() / (1024**3)
             print(f"[seed={seed}] Unrolled Peak GPU memory: {peak:.2f} GB")
@@ -176,7 +194,7 @@ def run_once(seed, method, init, cfg_path, weight_path,
     elif method=="dflow":
         if device=="cuda":
            torch.cuda.reset_peak_memory_stats()
-        rec = optimise_z_dflow(physics, y, x_gt, wrapped, iter_max, device, z0)
+        rec, losses, psnrs = optimise_z_dflow(physics, y, x_gt, wrapped, iter_max, device, z0)
         if device=="cuda":
            peak = torch.cuda.max_memory_allocated()/(1024**3)
            print(f"[seed={seed}] D-Flow Peak GPU memory: {peak:.2f} GB")
@@ -184,10 +202,16 @@ def run_once(seed, method, init, cfg_path, weight_path,
     else:  # adjoint
         if device=="cuda":
             torch.cuda.reset_peak_memory_stats()
-        rec = optimise_z_adjoint(physics, y, x_gt, wrapped, iter_max, device, z0)
+        rec, losses, psnrs = optimise_z_adjoint(physics, y, x_gt, wrapped, iter_max, device, z0)
         if device=="cuda":
             peak = torch.cuda.max_memory_allocated()/(1024**3)
             print(f"[seed={seed}] Adjoint Peak GPU memory: {peak:.2f} GB")
+    
+    # 保存 loss & psnr 曲线
+    od_seed = os.path.join(output_dir, f"{method}_{init}", f"seed{seed}")
+    os.makedirs(od_seed, exist_ok=True)
+    plt.figure(); plt.plot(losses); plt.xlabel('Iteration'); plt.ylabel('Loss'); plt.title(f'{method}_{init} loss'); plt.savefig(os.path.join(od_seed,'loss.png')); plt.close()
+    plt.figure(); plt.plot(psnrs); plt.xlabel('Iteration'); plt.ylabel('PSNR (dB)'); plt.title(f'{method}_{init} PSNR'); plt.savefig(os.path.join(od_seed,'psnr.png')); plt.close()
 
     gt_np  = x_gt.cpu().numpy().squeeze()
     rec_np = rec.cpu().numpy().squeeze()
@@ -206,8 +230,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--method",     choices=["unrolled","dflow","adjoint"], required=True)
     p.add_argument("--init",       choices=["random","dflow"], default="random")
-    p.add_argument("--seeds",      type=str, required=True,
-                   help="seed list")
+    p.add_argument("--seeds",      type=str, required=True)
     p.add_argument("--iter_max",   type=int, default=200)
     p.add_argument("--cfg_path",   type=str, default="flow_matching_ct.yaml")
     p.add_argument("--weight_path",type=str, default="flow_matching_ct.pt")
