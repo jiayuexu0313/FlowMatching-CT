@@ -1,0 +1,34 @@
+[seed=0] max_angle_deg=90.0,num_angles=90, undersampling=0.994
+[Adjoint] iter 200/600: loss=1.316e+05, PSNR=24.93
+[Adjoint] iter 400/600: loss=2.656e+04, PSNR=28.83
+[Adjoint] iter 600/600: loss=2.466e+04, PSNR=29.17
+[seed=0] Adjoint Peak GPU memory: 0.67 GB
+[seed=0] PSNR=29.17dB  SSIM=0.7975
+[seed=1] max_angle_deg=90.0,num_angles=90, undersampling=0.994
+[Adjoint] iter 200/600: loss=1.070e+05, PSNR=27.29
+[Adjoint] iter 400/600: loss=2.872e+04, PSNR=27.30
+[Adjoint] iter 600/600: loss=2.614e+04, PSNR=26.46
+[seed=1] Adjoint Peak GPU memory: 0.71 GB
+[seed=1] PSNR=26.46dB  SSIM=0.7896
+[seed=42] max_angle_deg=90.0,num_angles=90, undersampling=0.994
+[Adjoint] iter 200/600: loss=1.154e+05, PSNR=25.93
+[Adjoint] iter 400/600: loss=5.880e+04, PSNR=29.71
+[Adjoint] iter 600/600: loss=3.768e+04, PSNR=28.98
+[seed=42] Adjoint Peak GPU memory: 0.75 GB
+[seed=42] PSNR=28.98dB  SSIM=0.8061
+[seed=123] max_angle_deg=90.0,num_angles=90, undersampling=0.994
+[Adjoint] iter 200/600: loss=2.400e+04, PSNR=29.33
+[Adjoint] iter 400/600: loss=6.191e+04, PSNR=27.43
+[Adjoint] iter 600/600: loss=3.071e+04, PSNR=29.91
+[seed=123] Adjoint Peak GPU memory: 0.79 GB
+[seed=123] PSNR=29.91dB  SSIM=0.8153
+[seed=3407] max_angle_deg=90.0,num_angles=90, undersampling=0.994
+[Adjoint] iter 200/600: loss=1.102e+05, PSNR=26.74
+[Adjoint] iter 400/600: loss=1.867e+05, PSNR=19.24
+[Adjoint] iter 600/600: loss=2.238e+04, PSNR=26.82
+[seed=3407] Adjoint Peak GPU memory: 0.83 GB
+[seed=3407] PSNR=26.82dB  SSIM=0.8152
+=== adjoint + dflow ===
+PSNR mean=28.27  std=1.37
+SSIM mean=0.8047  std=0.0101
+Summary saved to limited90new/adjoint_dflow/summary_adjoint_dflow.csv

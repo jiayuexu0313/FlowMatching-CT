@@ -1,0 +1,29 @@
+[Unrolled] iter 200/600: loss=2.999e+04, PSNR=26.04, ||z||=129.376
+[Unrolled] iter 400/600: loss=1.760e+04, PSNR=27.60, ||z||=132.291
+[Unrolled] iter 600/600: loss=2.025e+04, PSNR=26.00, ||z||=134.635
+[seed=0] Unrolled Peak GPU memory: 2.20 GB
+[seed=0] PSNR=26.00dB  SSIM=0.5314
+[Unrolled] iter 200/600: loss=1.491e+04, PSNR=25.37, ||z||=135.425
+[Unrolled] iter 400/600: loss=1.161e+04, PSNR=24.74, ||z||=136.635
+[Unrolled] iter 600/600: loss=1.140e+04, PSNR=24.40, ||z||=137.038
+[seed=1] Unrolled Peak GPU memory: 2.23 GB
+[seed=1] PSNR=24.40dB  SSIM=0.4445
+[Unrolled] iter 200/600: loss=1.590e+04, PSNR=24.19, ||z||=137.218
+[Unrolled] iter 400/600: loss=1.217e+04, PSNR=25.09, ||z||=136.320
+[Unrolled] iter 600/600: loss=1.110e+04, PSNR=24.52, ||z||=137.077
+[seed=42] Unrolled Peak GPU memory: 2.23 GB
+[seed=42] PSNR=24.52dB  SSIM=0.4535
+[Unrolled] iter 200/600: loss=1.434e+04, PSNR=24.67, ||z||=136.386
+[Unrolled] iter 400/600: loss=1.126e+04, PSNR=24.81, ||z||=136.675
+[Unrolled] iter 600/600: loss=5.413e+04, PSNR=23.88, ||z||=137.381
+[seed=123] Unrolled Peak GPU memory: 2.24 GB
+[seed=123] PSNR=23.88dB  SSIM=0.4417
+[Unrolled] iter 200/600: loss=1.262e+04, PSNR=24.06, ||z||=137.427
+[Unrolled] iter 400/600: loss=1.112e+04, PSNR=24.55, ||z||=136.873
+[Unrolled] iter 600/600: loss=1.091e+04, PSNR=23.97, ||z||=137.695
+[seed=3407] Unrolled Peak GPU memory: 2.24 GB
+[seed=3407] PSNR=23.97dB  SSIM=0.4260
+=== unrolled + dflow ===
+PSNR mean=24.55  std=0.76
+SSIM mean=0.4594  std=0.0371
+Summary saved to adjoint_solverrk4/unrolled_dflow/summary_unrolled_dflow.csv

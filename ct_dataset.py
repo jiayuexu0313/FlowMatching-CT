@@ -1,27 +1,3 @@
-# import torch
-# from torch.utils.data import Dataset
-
-# class CTDataset(Dataset):
-#     def __init__(self, tensor_path='/content/drive/MyDrive/CT_dataset_128.pt', measurement_dim=200, seed=42):
-#         self.data = torch.load(tensor_path)  # [N, 128, 128]
-#         self.N = self.data.shape[0]
-#         self.input_dim = 128 * 128
-#         self.measurement_dim = measurement_dim
-
-#         torch.manual_seed(seed)
-#         self.A = torch.randn(self.measurement_dim, self.input_dim)
-
-#     def __len__(self):
-#         return self.N
-
-#     def __getitem__(self, idx):
-#         x = self.data[idx].view(-1)  # 展平为 [16384]
-#         y = torch.matmul(self.A, x)  # A·x
-#         return y, x
-
-
-
-
 # Radon:
 import torch
 from torch.utils.data import Dataset
@@ -40,9 +16,7 @@ class CTDataset(Dataset):
     - Only use x_flat when training Flow. Previewing sinogram on the CPU is available with y_cpu. 
     """
 
-    def __init__(self,
-                 tensor_path='/content/drive/MyDrive/CT_dataset_128.pt',
-                 measurement_dim=200):
+    def __init__(self, tensor_path='CT_dataset_128.pt', measurement_dim=200):
         super().__init__()
 
         self.data = torch.load(tensor_path, map_location="cpu")
@@ -50,15 +24,8 @@ class CTDataset(Dataset):
         self.measurement_dim = measurement_dim
 
         # Construction of DeepInverse Tomography on CPU (only for CPU test visualization sinogram)
-        angles = torch.linspace(0, np.pi, measurement_dim,
-                                device="cpu", dtype=torch.float32)
-        self.physics_cpu = Tomography(
-            img_shape=(1, 128, 128),
-            angles=angles,
-            geometry="parallel",
-            img_width=128,
-            device="cpu"
-        )
+        angles = torch.linspace(0, np.pi, measurement_dim, device="cpu", dtype=torch.float32)
+        self.physics_cpu = Tomography(img_shape=(1, 128, 128), angles=angles, geometry="parallel", img_width=128, device="cpu")
 
     def __len__(self):
         return self.N
@@ -81,5 +48,3 @@ class CTDataset(Dataset):
         x_flat = x_img.view(-1)
 
         return y_cpu, x_flat
-
-

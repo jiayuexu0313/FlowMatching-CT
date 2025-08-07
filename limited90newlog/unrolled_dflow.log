@@ -1,0 +1,34 @@
+[seed=0] max_angle_deg=90.0,num_angles=90, undersampling=0.994
+[Unrolled] iter 200/600: loss=1.733e+04, PSNR=28.64
+[Unrolled] iter 400/600: loss=1.654e+04, PSNR=28.85
+[Unrolled] iter 600/600: loss=1.689e+04, PSNR=24.66
+[seed=0] Unrolled Peak GPU memory: 2.20 GB
+[seed=0] PSNR=24.66dB  SSIM=0.5027
+[seed=1] max_angle_deg=90.0,num_angles=90, undersampling=0.994
+[Unrolled] iter 200/600: loss=1.765e+04, PSNR=28.11
+[Unrolled] iter 400/600: loss=3.300e+05, PSNR=16.87
+[Unrolled] iter 600/600: loss=1.524e+04, PSNR=20.17
+[seed=1] Unrolled Peak GPU memory: 2.23 GB
+[seed=1] PSNR=20.17dB  SSIM=0.2703
+[seed=42] max_angle_deg=90.0,num_angles=90, undersampling=0.994
+[Unrolled] iter 200/600: loss=1.752e+04, PSNR=28.11
+[Unrolled] iter 400/600: loss=1.523e+04, PSNR=27.54
+[Unrolled] iter 600/600: loss=3.373e+04, PSNR=21.25
+[seed=42] Unrolled Peak GPU memory: 2.23 GB
+[seed=42] PSNR=21.25dB  SSIM=0.4730
+[seed=123] max_angle_deg=90.0,num_angles=90, undersampling=0.994
+[Unrolled] iter 200/600: loss=1.720e+04, PSNR=28.99
+[Unrolled] iter 400/600: loss=1.802e+04, PSNR=27.00
+[Unrolled] iter 600/600: loss=1.367e+04, PSNR=25.38
+[seed=123] Unrolled Peak GPU memory: 2.24 GB
+[seed=123] PSNR=25.38dB  SSIM=0.5204
+[seed=3407] max_angle_deg=90.0,num_angles=90, undersampling=0.994
+[Unrolled] iter 200/600: loss=1.757e+04, PSNR=28.25
+[Unrolled] iter 400/600: loss=1.459e+04, PSNR=26.57
+[Unrolled] iter 600/600: loss=1.319e+04, PSNR=24.99
+[seed=3407] Unrolled Peak GPU memory: 2.24 GB
+[seed=3407] PSNR=24.99dB  SSIM=0.4992
+=== unrolled + dflow ===
+PSNR mean=23.29  std=2.15
+SSIM mean=0.4531  std=0.0927
+Summary saved to limited90new/unrolled_dflow/summary_unrolled_dflow.csv

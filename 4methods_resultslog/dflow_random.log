@@ -1,0 +1,39 @@
+[D-Flow] iter 200/1000: loss=1.878e+04, PSNR=32.57
+[D-Flow] iter 400/1000: loss=1.781e+04, PSNR=34.73
+[D-Flow] iter 600/1000: loss=1.775e+04, PSNR=34.78
+[D-Flow] iter 800/1000: loss=1.775e+04, PSNR=34.78
+[D-Flow] iter 1000/1000: loss=1.775e+04, PSNR=34.78
+[seed=0] D-Flow Peak GPU memory: 2.22 GB
+[seed=0] PSNR=34.78dB  SSIM=0.9036
+[D-Flow] iter 200/1000: loss=1.864e+04, PSNR=33.32
+[D-Flow] iter 400/1000: loss=1.792e+04, PSNR=34.16
+[D-Flow] iter 600/1000: loss=1.757e+04, PSNR=32.74
+[D-Flow] iter 800/1000: loss=1.679e+04, PSNR=28.92
+[D-Flow] iter 1000/1000: loss=1.336e+04, PSNR=23.06
+[seed=1] D-Flow Peak GPU memory: 2.24 GB
+[seed=1] PSNR=23.06dB  SSIM=0.4059
+[D-Flow] iter 200/1000: loss=1.828e+04, PSNR=33.14
+[D-Flow] iter 400/1000: loss=1.765e+04, PSNR=34.44
+[D-Flow] iter 600/1000: loss=1.723e+04, PSNR=33.42
+[D-Flow] iter 800/1000: loss=1.396e+04, PSNR=27.70
+[D-Flow] iter 1000/1000: loss=1.191e+04, PSNR=26.26
+[seed=42] D-Flow Peak GPU memory: 2.24 GB
+[seed=42] PSNR=26.26dB  SSIM=0.5442
+[D-Flow] iter 200/1000: loss=1.866e+04, PSNR=32.46
+[D-Flow] iter 400/1000: loss=1.756e+04, PSNR=34.78
+[D-Flow] iter 600/1000: loss=1.717e+04, PSNR=34.64
+[D-Flow] iter 800/1000: loss=1.699e+04, PSNR=33.97
+[D-Flow] iter 1000/1000: loss=1.668e+04, PSNR=32.52
+[seed=123] D-Flow Peak GPU memory: 2.24 GB
+[seed=123] PSNR=32.52dB  SSIM=0.8452
+[D-Flow] iter 200/1000: loss=1.848e+04, PSNR=33.11
+[D-Flow] iter 400/1000: loss=1.780e+04, PSNR=34.66
+[D-Flow] iter 600/1000: loss=1.773e+04, PSNR=34.59
+[D-Flow] iter 800/1000: loss=1.773e+04, PSNR=34.59
+[D-Flow] iter 1000/1000: loss=1.773e+04, PSNR=34.59
+[seed=3407] D-Flow Peak GPU memory: 2.24 GB
+[seed=3407] PSNR=34.59dB  SSIM=0.8969
+=== dflow + random ===
+PSNR mean=30.24  std=4.74
+SSIM mean=0.7192  std=0.2050
+Summary saved to 7_5_2/dflow_random/summary_dflow_random.csv

@@ -1,0 +1,126 @@
+[D-Flow] iter 200/600: loss=1.805e+04, PSNR=34.47
+[D-Flow] iter 400/600: loss=1.744e+04, PSNR=34.06
+[D-Flow] iter 600/600: loss=1.495e+04, PSNR=27.96
+[seed=0 image=0] D-Flow Peak GPU memory: 2.22 GB
+[image=0 seed=0] PSNR=27.96 dB  SSIM=0.6250
+[D-Flow] iter 200/600: loss=1.791e+04, PSNR=34.19
+[D-Flow] iter 400/600: loss=1.716e+04, PSNR=30.59
+[D-Flow] iter 600/600: loss=1.326e+04, PSNR=22.90
+[seed=1 image=0] D-Flow Peak GPU memory: 2.24 GB
+[image=0 seed=1] PSNR=22.90 dB  SSIM=0.3991
+[D-Flow] iter 200/600: loss=1.840e+04, PSNR=32.98
+[D-Flow] iter 400/600: loss=1.781e+04, PSNR=34.40
+[D-Flow] iter 600/600: loss=1.755e+04, PSNR=34.44
+[seed=42 image=0] D-Flow Peak GPU memory: 2.24 GB
+[image=0 seed=42] PSNR=34.44 dB  SSIM=0.8927
+[D-Flow] iter 200/600: loss=1.828e+04, PSNR=33.11
+[D-Flow] iter 400/600: loss=1.747e+04, PSNR=34.97
+[D-Flow] iter 600/600: loss=1.709e+04, PSNR=33.87
+[seed=123 image=0] D-Flow Peak GPU memory: 2.25 GB
+[image=0 seed=123] PSNR=33.87 dB  SSIM=0.8934
+[D-Flow] iter 200/600: loss=1.783e+04, PSNR=34.38
+[D-Flow] iter 400/600: loss=1.714e+04, PSNR=31.61
+[D-Flow] iter 600/600: loss=1.356e+04, PSNR=27.02
+[seed=3407 image=0] D-Flow Peak GPU memory: 2.22 GB
+[image=0 seed=3407] PSNR=27.02 dB  SSIM=0.5761
+[D-Flow] iter 200/600: loss=1.242e+04, PSNR=35.23
+[D-Flow] iter 400/600: loss=1.204e+04, PSNR=33.20
+[D-Flow] iter 600/600: loss=1.123e+04, PSNR=29.69
+[seed=0 image=1] D-Flow Peak GPU memory: 2.25 GB
+[image=1 seed=0] PSNR=29.69 dB  SSIM=0.7056
+[D-Flow] iter 200/600: loss=1.297e+04, PSNR=34.62
+[D-Flow] iter 400/600: loss=1.260e+04, PSNR=35.22
+[D-Flow] iter 600/600: loss=1.237e+04, PSNR=34.93
+[seed=1 image=1] D-Flow Peak GPU memory: 2.24 GB
+[image=1 seed=1] PSNR=34.93 dB  SSIM=0.9349
+[D-Flow] iter 200/600: loss=1.276e+04, PSNR=34.43
+[D-Flow] iter 400/600: loss=1.248e+04, PSNR=35.08
+[D-Flow] iter 600/600: loss=1.220e+04, PSNR=34.66
+[seed=42 image=1] D-Flow Peak GPU memory: 2.24 GB
+[image=1 seed=42] PSNR=34.66 dB  SSIM=0.9115
+[D-Flow] iter 200/600: loss=1.283e+04, PSNR=33.68
+[D-Flow] iter 400/600: loss=1.229e+04, PSNR=35.53
+[D-Flow] iter 600/600: loss=1.198e+04, PSNR=34.77
+[seed=123 image=1] D-Flow Peak GPU memory: 2.24 GB
+[image=1 seed=123] PSNR=34.77 dB  SSIM=0.9216
+[D-Flow] iter 200/600: loss=1.295e+04, PSNR=33.55
+[D-Flow] iter 400/600: loss=1.229e+04, PSNR=35.09
+[D-Flow] iter 600/600: loss=1.143e+04, PSNR=30.26
+[seed=3407 image=1] D-Flow Peak GPU memory: 2.24 GB
+[image=1 seed=3407] PSNR=30.26 dB  SSIM=0.7282
+[D-Flow] iter 200/600: loss=1.251e+04, PSNR=35.02
+[D-Flow] iter 400/600: loss=1.213e+04, PSNR=33.73
+[D-Flow] iter 600/600: loss=9.795e+03, PSNR=28.45
+[seed=0 image=2] D-Flow Peak GPU memory: 2.22 GB
+[image=2 seed=0] PSNR=28.45 dB  SSIM=0.6400
+[D-Flow] iter 200/600: loss=1.508e+04, PSNR=30.76
+[D-Flow] iter 400/600: loss=1.357e+04, PSNR=33.04
+[D-Flow] iter 600/600: loss=1.301e+04, PSNR=34.38
+[seed=1 image=2] D-Flow Peak GPU memory: 2.24 GB
+[image=2 seed=1] PSNR=34.38 dB  SSIM=0.9279
+[D-Flow] iter 200/600: loss=1.254e+04, PSNR=35.03
+[D-Flow] iter 400/600: loss=1.221e+04, PSNR=35.09
+[D-Flow] iter 600/600: loss=1.221e+04, PSNR=35.09
+[seed=42 image=2] D-Flow Peak GPU memory: 2.25 GB
+[image=2 seed=42] PSNR=35.09 dB  SSIM=0.9221
+[D-Flow] iter 200/600: loss=1.252e+04, PSNR=34.96
+[D-Flow] iter 400/600: loss=1.218e+04, PSNR=35.44
+[D-Flow] iter 600/600: loss=1.142e+04, PSNR=31.18
+[seed=123 image=2] D-Flow Peak GPU memory: 2.24 GB
+[image=2 seed=123] PSNR=31.18 dB  SSIM=0.7748
+[D-Flow] iter 200/600: loss=1.260e+04, PSNR=35.44
+[D-Flow] iter 400/600: loss=1.223e+04, PSNR=34.30
+[D-Flow] iter 600/600: loss=1.001e+04, PSNR=28.80
+[seed=3407 image=2] D-Flow Peak GPU memory: 2.24 GB
+[image=2 seed=3407] PSNR=28.80 dB  SSIM=0.6641
+[D-Flow] iter 200/600: loss=1.498e+04, PSNR=32.24
+[D-Flow] iter 400/600: loss=1.498e+04, PSNR=32.24
+[D-Flow] iter 600/600: loss=1.498e+04, PSNR=32.24
+[seed=0 image=3] D-Flow Peak GPU memory: 2.25 GB
+[image=3 seed=0] PSNR=32.24 dB  SSIM=0.9014
+[D-Flow] iter 200/600: loss=1.548e+04, PSNR=31.94
+[D-Flow] iter 400/600: loss=1.451e+04, PSNR=32.28
+[D-Flow] iter 600/600: loss=1.303e+04, PSNR=26.70
+[seed=1 image=3] D-Flow Peak GPU memory: 2.24 GB
+[image=3 seed=1] PSNR=26.70 dB  SSIM=0.6315
+[D-Flow] iter 200/600: loss=1.505e+04, PSNR=32.54
+[D-Flow] iter 400/600: loss=1.402e+04, PSNR=32.25
+[D-Flow] iter 600/600: loss=1.262e+04, PSNR=28.76
+[seed=42 image=3] D-Flow Peak GPU memory: 2.25 GB
+[image=3 seed=42] PSNR=28.76 dB  SSIM=0.7064
+[D-Flow] iter 200/600: loss=8.376e+05, PSNR=15.22
+[D-Flow] iter 400/600: loss=1.462e+04, PSNR=32.78
+[D-Flow] iter 600/600: loss=1.412e+04, PSNR=32.54
+[seed=123 image=3] D-Flow Peak GPU memory: 2.24 GB
+[image=3 seed=123] PSNR=32.54 dB  SSIM=0.9021
+[D-Flow] iter 200/600: loss=1.596e+04, PSNR=30.73
+[D-Flow] iter 400/600: loss=1.453e+04, PSNR=33.10
+[D-Flow] iter 600/600: loss=1.335e+04, PSNR=28.63
+[seed=3407 image=3] D-Flow Peak GPU memory: 2.24 GB
+[image=3 seed=3407] PSNR=28.63 dB  SSIM=0.6923
+[D-Flow] iter 200/600: loss=1.069e+04, PSNR=36.23
+[D-Flow] iter 400/600: loss=1.056e+04, PSNR=36.01
+[D-Flow] iter 600/600: loss=1.051e+04, PSNR=35.74
+[seed=0 image=4] D-Flow Peak GPU memory: 2.24 GB
+[image=4 seed=0] PSNR=35.74 dB  SSIM=0.9351
+[D-Flow] iter 200/600: loss=1.103e+04, PSNR=36.07
+[D-Flow] iter 400/600: loss=1.076e+04, PSNR=36.15
+[D-Flow] iter 600/600: loss=1.034e+04, PSNR=32.40
+[seed=1 image=4] D-Flow Peak GPU memory: 2.21 GB
+[image=4 seed=1] PSNR=32.40 dB  SSIM=0.8208
+[D-Flow] iter 200/600: loss=1.073e+04, PSNR=36.82
+[D-Flow] iter 400/600: loss=1.034e+04, PSNR=35.13
+[D-Flow] iter 600/600: loss=9.907e+03, PSNR=31.36
+[seed=42 image=4] D-Flow Peak GPU memory: 2.24 GB
+[image=4 seed=42] PSNR=31.36 dB  SSIM=0.7584
+[D-Flow] iter 200/600: loss=1.069e+04, PSNR=36.36
+[D-Flow] iter 400/600: loss=1.047e+04, PSNR=36.36
+[D-Flow] iter 600/600: loss=1.024e+04, PSNR=35.55
+[seed=123 image=4] D-Flow Peak GPU memory: 2.24 GB
+[image=4 seed=123] PSNR=35.55 dB  SSIM=0.9358
+[D-Flow] iter 200/600: loss=1.122e+04, PSNR=34.52
+[D-Flow] iter 400/600: loss=1.075e+04, PSNR=37.00
+[D-Flow] iter 600/600: loss=1.035e+04, PSNR=33.96
+[seed=3407 image=4] D-Flow Peak GPU memory: 2.24 GB
+[image=4 seed=3407] PSNR=33.96 dB  SSIM=0.8566
+Summary saved to 5images/dflow_random/summary_dflow_random.csv
