@@ -1,0 +1,34 @@
+[seed=0] num_angles=60, undersampling=0.663
+[D-Flow] iter 200/600: loss=1.254e+04, PSNR=32.90
+[D-Flow] iter 400/600: loss=1.192e+04, PSNR=34.61
+[D-Flow] iter 600/600: loss=1.159e+04, PSNR=33.04
+[seed=0] D-Flow Peak GPU memory: 2.18 GB
+[seed=0] PSNR=33.04dB  SSIM=0.8519
+[seed=1] num_angles=60, undersampling=0.663
+[D-Flow] iter 200/600: loss=1.217e+04, PSNR=33.95
+[D-Flow] iter 400/600: loss=1.175e+04, PSNR=33.96
+[D-Flow] iter 600/600: loss=1.132e+04, PSNR=31.00
+[seed=1] D-Flow Peak GPU memory: 2.20 GB
+[seed=1] PSNR=31.00dB  SSIM=0.8265
+[seed=42] num_angles=60, undersampling=0.663
+[D-Flow] iter 200/600: loss=1.181e+04, PSNR=34.12
+[D-Flow] iter 400/600: loss=1.120e+04, PSNR=33.19
+[D-Flow] iter 600/600: loss=1.081e+04, PSNR=30.67
+[seed=42] D-Flow Peak GPU memory: 2.20 GB
+[seed=42] PSNR=30.67dB  SSIM=0.8344
+[seed=123] num_angles=60, undersampling=0.663
+[D-Flow] iter 200/600: loss=1.272e+04, PSNR=32.51
+[D-Flow] iter 400/600: loss=1.201e+04, PSNR=34.23
+[D-Flow] iter 600/600: loss=1.201e+04, PSNR=34.23
+[seed=123] D-Flow Peak GPU memory: 2.21 GB
+[seed=123] PSNR=34.23dB  SSIM=0.9020
+[seed=3407] num_angles=60, undersampling=0.663
+[D-Flow] iter 200/600: loss=1.190e+04, PSNR=34.16
+[D-Flow] iter 400/600: loss=1.157e+04, PSNR=34.50
+[D-Flow] iter 600/600: loss=1.120e+04, PSNR=32.97
+[seed=3407] D-Flow Peak GPU memory: 2.20 GB
+[seed=3407] PSNR=32.97dB  SSIM=0.8582
+=== dflow + random ===
+PSNR mean=32.38  std=1.34
+SSIM mean=0.8546  std=0.0263
+Summary saved to sparse60/dflow_random/summary_dflow_random.csv

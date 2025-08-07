@@ -1,0 +1,39 @@
+[Unrolled] iter 200/1000: loss=2.993e+04, PSNR=26.07, ||z||=129.352
+[Unrolled] iter 400/1000: loss=2.243e+04, PSNR=27.13, ||z||=132.601
+[Unrolled] iter 600/1000: loss=5.156e+04, PSNR=25.06, ||z||=135.061
+[Unrolled] iter 800/1000: loss=4.009e+04, PSNR=25.55, ||z||=132.389
+[Unrolled] iter 1000/1000: loss=1.580e+04, PSNR=28.62, ||z||=132.668
+[seed=0] Unrolled Peak GPU memory: 2.20 GB
+[seed=0] PSNR=28.62dB  SSIM=0.6851
+[Unrolled] iter 200/1000: loss=1.491e+04, PSNR=25.37, ||z||=135.425
+[Unrolled] iter 400/1000: loss=1.161e+04, PSNR=24.74, ||z||=136.634
+[Unrolled] iter 600/1000: loss=1.143e+04, PSNR=24.40, ||z||=137.031
+[Unrolled] iter 800/1000: loss=1.108e+04, PSNR=23.65, ||z||=138.042
+[Unrolled] iter 1000/1000: loss=1.167e+04, PSNR=24.49, ||z||=136.864
+[seed=1] Unrolled Peak GPU memory: 2.23 GB
+[seed=1] PSNR=24.49dB  SSIM=0.4495
+[Unrolled] iter 200/1000: loss=1.590e+04, PSNR=24.19, ||z||=137.218
+[Unrolled] iter 400/1000: loss=1.217e+04, PSNR=25.09, ||z||=136.320
+[Unrolled] iter 600/1000: loss=1.110e+04, PSNR=24.52, ||z||=137.077
+[Unrolled] iter 800/1000: loss=1.108e+04, PSNR=24.26, ||z||=137.422
+[Unrolled] iter 1000/1000: loss=1.499e+04, PSNR=23.51, ||z||=138.478
+[seed=42] Unrolled Peak GPU memory: 2.23 GB
+[seed=42] PSNR=23.51dB  SSIM=0.4076
+[Unrolled] iter 200/1000: loss=1.434e+04, PSNR=24.67, ||z||=136.386
+[Unrolled] iter 400/1000: loss=1.126e+04, PSNR=24.81, ||z||=136.675
+[Unrolled] iter 600/1000: loss=1.153e+04, PSNR=24.87, ||z||=136.602
+[Unrolled] iter 800/1000: loss=7.789e+04, PSNR=20.40, ||z||=139.782
+[Unrolled] iter 1000/1000: loss=1.437e+04, PSNR=27.09, ||z||=133.669
+[seed=123] Unrolled Peak GPU memory: 2.24 GB
+[seed=123] PSNR=27.09dB  SSIM=0.5979
+[Unrolled] iter 200/1000: loss=1.263e+04, PSNR=24.05, ||z||=137.445
+[Unrolled] iter 400/1000: loss=1.112e+04, PSNR=24.54, ||z||=136.891
+[Unrolled] iter 600/1000: loss=1.082e+04, PSNR=23.96, ||z||=137.734
+[Unrolled] iter 800/1000: loss=1.069e+04, PSNR=23.76, ||z||=137.974
+[Unrolled] iter 1000/1000: loss=1.030e+04, PSNR=23.80, ||z||=137.910
+[seed=3407] Unrolled Peak GPU memory: 2.24 GB
+[seed=3407] PSNR=23.80dB  SSIM=0.4170
+=== unrolled + dflow ===
+PSNR mean=25.50  std=2.01
+SSIM mean=0.5114  std=0.1106
+Summary saved to monitor_norm/unrolled_dflow/summary_unrolled_dflow.csv

@@ -1,0 +1,39 @@
+[Unrolled] iter 200/1000: loss=3.032e+04, PSNR=25.75
+[Unrolled] iter 400/1000: loss=2.130e+04, PSNR=28.07
+[Unrolled] iter 600/1000: loss=1.925e+04, PSNR=30.11
+[Unrolled] iter 800/1000: loss=1.880e+04, PSNR=30.65
+[Unrolled] iter 1000/1000: loss=1.859e+04, PSNR=30.60
+[seed=0] Unrolled Peak GPU memory: 2.20 GB
+[seed=0] PSNR=30.60dB  SSIM=0.7292
+[Unrolled] iter 200/1000: loss=3.200e+04, PSNR=26.58
+[Unrolled] iter 400/1000: loss=2.061e+04, PSNR=29.78
+[Unrolled] iter 600/1000: loss=1.931e+04, PSNR=31.41
+[Unrolled] iter 800/1000: loss=1.915e+04, PSNR=31.78
+[Unrolled] iter 1000/1000: loss=1.867e+04, PSNR=32.49
+[seed=1] Unrolled Peak GPU memory: 2.23 GB
+[seed=1] PSNR=32.49dB  SSIM=0.8268
+[Unrolled] iter 200/1000: loss=3.501e+04, PSNR=25.40
+[Unrolled] iter 400/1000: loss=2.187e+04, PSNR=30.19
+[Unrolled] iter 600/1000: loss=1.993e+04, PSNR=30.63
+[Unrolled] iter 800/1000: loss=1.925e+04, PSNR=31.02
+[Unrolled] iter 1000/1000: loss=1.894e+04, PSNR=31.43
+[seed=42] Unrolled Peak GPU memory: 2.23 GB
+[seed=42] PSNR=31.43dB  SSIM=0.8038
+[Unrolled] iter 200/1000: loss=6.337e+04, PSNR=21.52
+[Unrolled] iter 400/1000: loss=1.978e+04, PSNR=29.69
+[Unrolled] iter 600/1000: loss=1.855e+04, PSNR=31.72
+[Unrolled] iter 800/1000: loss=1.842e+04, PSNR=32.31
+[Unrolled] iter 1000/1000: loss=1.857e+04, PSNR=32.40
+[seed=123] Unrolled Peak GPU memory: 2.24 GB
+[seed=123] PSNR=32.40dB  SSIM=0.8260
+[Unrolled] iter 200/1000: loss=2.427e+04, PSNR=28.50
+[Unrolled] iter 400/1000: loss=1.984e+04, PSNR=29.99
+[Unrolled] iter 600/1000: loss=1.889e+04, PSNR=31.15
+[Unrolled] iter 800/1000: loss=1.847e+04, PSNR=31.87
+[Unrolled] iter 1000/1000: loss=1.864e+04, PSNR=31.40
+[seed=3407] Unrolled Peak GPU memory: 2.24 GB
+[seed=3407] PSNR=31.40dB  SSIM=0.7630
+=== unrolled + random ===
+PSNR mean=31.66  std=0.70
+SSIM mean=0.7898  std=0.0381
+Summary saved to 7_6/unrolled_random/summary_unrolled_random.csv

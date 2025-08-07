@@ -1,0 +1,39 @@
+[Adjoint] iter 200/1000: loss=2.107e+04, PSNR=30.99
+[Adjoint] iter 400/1000: loss=2.157e+04, PSNR=30.86
+[Adjoint] iter 600/1000: loss=2.503e+04, PSNR=28.49
+[Adjoint] iter 800/1000: loss=2.204e+04, PSNR=29.15
+[Adjoint] iter 1000/1000: loss=3.001e+04, PSNR=28.62
+[seed=0] Adjoint Peak GPU memory: 0.67 GB
+[seed=0] PSNR=28.62dB  SSIM=0.8375
+[Adjoint] iter 200/1000: loss=1.817e+04, PSNR=26.62
+[Adjoint] iter 400/1000: loss=1.159e+05, PSNR=22.78
+[Adjoint] iter 600/1000: loss=2.704e+04, PSNR=28.15
+[Adjoint] iter 800/1000: loss=2.318e+04, PSNR=29.97
+[Adjoint] iter 1000/1000: loss=2.235e+04, PSNR=30.77
+[seed=1] Adjoint Peak GPU memory: 0.71 GB
+[seed=1] PSNR=30.77dB  SSIM=0.8067
+[Adjoint] iter 200/1000: loss=2.150e+04, PSNR=30.52
+[Adjoint] iter 400/1000: loss=1.812e+04, PSNR=33.81
+[Adjoint] iter 600/1000: loss=1.935e+04, PSNR=31.61
+[Adjoint] iter 800/1000: loss=2.055e+04, PSNR=31.20
+[Adjoint] iter 1000/1000: loss=1.840e+04, PSNR=32.26
+[seed=42] Adjoint Peak GPU memory: 0.75 GB
+[seed=42] PSNR=32.26dB  SSIM=0.8859
+[Adjoint] iter 200/1000: loss=2.558e+04, PSNR=29.34
+[Adjoint] iter 400/1000: loss=1.835e+04, PSNR=33.32
+[Adjoint] iter 600/1000: loss=3.144e+04, PSNR=27.25
+[Adjoint] iter 800/1000: loss=2.299e+04, PSNR=30.32
+[Adjoint] iter 1000/1000: loss=3.322e+04, PSNR=29.90
+[seed=123] Adjoint Peak GPU memory: 0.79 GB
+[seed=123] PSNR=29.90dB  SSIM=0.8401
+[Adjoint] iter 200/1000: loss=2.789e+04, PSNR=27.47
+[Adjoint] iter 400/1000: loss=2.115e+04, PSNR=30.46
+[Adjoint] iter 600/1000: loss=3.594e+04, PSNR=27.64
+[Adjoint] iter 800/1000: loss=4.976e+04, PSNR=29.51
+[Adjoint] iter 1000/1000: loss=1.242e+05, PSNR=28.17
+[seed=3407] Adjoint Peak GPU memory: 0.83 GB
+[seed=3407] PSNR=28.17dB  SSIM=0.8698
+=== adjoint + dflow ===
+PSNR mean=29.94  std=1.48
+SSIM mean=0.8480  std=0.0275
+Summary saved to 7_6/adjoint_dflow/summary_adjoint_dflow.csv
