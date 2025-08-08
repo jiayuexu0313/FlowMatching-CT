@@ -1,4 +1,3 @@
-````markdown
 # CT Reconstruction with Flow Matching based model
 
 This repository implements and extends **flow-matching-based** models for **Computed Tomography (CT) reconstruction**.  
@@ -112,7 +111,7 @@ python 4methods.py \
 
 ---
 
-## 8. Extended Experiments
+## 6. Extended Experiments
 
 ### Sparse View Reconstruction
 
@@ -136,7 +135,7 @@ Script: `limited.py`
 
 ---
 
-## 9. References
+## 7. References
 
 * Flow Matching package: [https://github.com/facebookresearch/flow\_matching](https://github.com/facebookresearch/flow_matching)
 * CT Dataset:
@@ -147,7 +146,7 @@ Script: `limited.py`
 
 ---
 
-## 10. Folder Structure
+## 8. Folder Structure
 
 ```
 .
@@ -200,6 +199,4 @@ Script: `limited.py`
 ├── solver_choice_rk4log/
 ├── viz/
 └── 
-```
-
 ```
