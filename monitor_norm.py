@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from skimage.metrics import structural_similarity as ssim
 
+from pathlib import Path
 from deepinv.physics import Tomography
 from ct_dataset import CTDataset
 from flow_matching.solver import ODESolver
@@ -61,6 +62,66 @@ def get_data(device):
     y = y.squeeze(0).squeeze(0).transpose(0,1)
     return physics, y, x_gt
 
+
+# Save arrays & aggregate plots
+def save_curve_arrays(od_seed, losses, psnrs, z_norms):
+    od = Path(od_seed); od.mkdir(parents=True, exist_ok=True)
+    arr_loss = np.array(losses, dtype=float)
+    arr_psnr = np.array(psnrs, dtype=float)
+    arr_znrm = np.array(z_norms, dtype=float)
+
+    np.save(od / "losses.npy", arr_loss)
+    np.save(od / "psnrs.npy",  arr_psnr)
+    np.save(od / "z_norms.npy",arr_znrm)
+
+    pd.DataFrame({"iter": np.arange(1, len(arr_loss)+1), "loss": arr_loss, "psnr": arr_psnr, "z_norm": arr_znrm}).to_csv(od / "curves.csv", index=False)
+
+
+def plot_aggregate_curves(output_dir, method, init, seeds):
+    base = Path(output_dir) / f"{method}_{init}"
+    eps = 1e-8
+    # PSNR
+    plt.figure()
+    for sd in seeds:
+        arr = np.load(base / f"seed{sd}" / "psnrs.npy")
+        plt.plot(np.arange(1, len(arr)+1), arr, label=f"seed{sd}")
+    plt.xlabel("Iteration")
+    plt.ylabel("PSNR (dB)")
+    plt.title(f"{method}_{init} — PSNR across seeds")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(base / "aggregate_seeds_psnr.png", dpi=200)
+    plt.close()
+
+    # log-loss
+    plt.figure()
+    for sd in seeds:
+        arr = np.load(base / f"seed{sd}" / "losses.npy")
+        logarr = np.log10(arr + eps)
+        plt.plot(np.arange(1, len(logarr)+1), logarr, label=f"seed{sd}")
+    plt.xlabel("Iteration")
+    plt.ylabel("log10(loss)")
+    plt.title(f"{method}_{init} — log-loss across seeds")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(base / "aggregate_seeds_logloss.png", dpi=200)
+    plt.close()
+
+    # z-norm
+    plt.figure()
+    for sd in seeds:
+        arr = np.load(base / f"seed{sd}" / "z_norms.npy")
+        plt.plot(np.arange(1, len(arr)+1), arr, label=f"seed{sd}")
+    plt.xlabel("Iteration")
+    plt.ylabel(r"$\|z\|_2$")
+    plt.title(f"{method}_{init} — z-norm across seeds")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(base / "aggregate_seeds_znorm.png", dpi=200)
+    plt.close()
+
+
+
 def optimise_z_unrolled(physics, y, x_gt, wrapped, iter_max, device, z):
     solver = ODESolver(velocity_model=wrapped)
     opt  = torch.optim.Adam([z], lr=1e-1)
@@ -92,7 +153,6 @@ def optimise_z_unrolled(physics, y, x_gt, wrapped, iter_max, device, z):
 
 def optimise_z_dflow(physics, y, x_gt, wrapped, iter_max, device, z):
     solver = ODESolver(velocity_model=wrapped)
-
     opt = torch.optim.LBFGS(
         [z],
         lr=1.0,
@@ -109,8 +169,7 @@ def optimise_z_dflow(physics, y, x_gt, wrapped, iter_max, device, z):
                 time_grid=t_grid,
                 x_init=z,
                 method="midpoint", step_size=1/STEPS,
-                enable_grad=True
-            )
+                enable_grad=True)
             ypred = physics(x_hat).squeeze(0).squeeze(0).transpose(0,1)
             loss  = ((ypred - y)**2).sum() + 0.01*(z**2).mean()
             loss.backward()
@@ -123,11 +182,9 @@ def optimise_z_dflow(physics, y, x_gt, wrapped, iter_max, device, z):
                 time_grid=t_grid,
                 x_init=z,
                 method="midpoint", step_size=1/STEPS,
-                enable_grad=False
-            ).clamp(0,1)
+                enable_grad=False).clamp(0,1)
             losses.append(loss.item())
             psnrs.append(compute_psnr(x_hat, x_gt))
-        
         z_norms.append(torch.norm(z).item())
         if (i+1) % 200 == 0:
             print(f"[D-Flow] iter {i+1}/{iter_max}: loss={losses[-1]:.3e}, PSNR={psnrs[-1]:.2f}, ||z||={z_norms[-1]:.3f}")
@@ -137,8 +194,7 @@ def optimise_z_dflow(physics, y, x_gt, wrapped, iter_max, device, z):
             time_grid=t_grid,
             x_init=z,
             method="midpoint", step_size=1/STEPS,
-            enable_grad=False
-        ).clamp(0,1)
+            enable_grad=False).clamp(0,1)
     return x_hat.detach(), losses, psnrs, z_norms
 
 
@@ -163,10 +219,10 @@ def optimise_z_adjoint(physics, y, x_gt, wrapped, iter_max, device, z):
         # reverse ODE (adjoint)
         n_steps, dt = 20, 1/20
         t_val = torch.tensor(1., device=device)
-        xt    = x_hat.clone().detach()
+        xt = x_hat.clone().detach()
         for _ in range(n_steps):
             model_out, jvp = torch.autograd.functional.jvp(lambda v: wrapped(v, t_val), (xt,), (lam,))
-            xt  = xt  - dt*model_out
+            xt = xt - dt*model_out
             lam = lam - dt*(-jvp)
             t_val -= dt
             xt = xt.detach()
@@ -177,7 +233,6 @@ def optimise_z_adjoint(physics, y, x_gt, wrapped, iter_max, device, z):
         with torch.no_grad():
             rec_temp = x_hat.clamp(0,1).detach()
             psnrs.append(compute_psnr(rec_temp, x_gt))
-        
         z_norms.append(torch.norm(z).item())
         if (i+1) % 200 == 0:
             print(f"[Adjoint] iter {i+1}/{iter_max}: loss={losses[-1]:.3e}, PSNR={psnrs[-1]:.2f}, ||z||={z_norms[-1]:.3f}")
@@ -197,13 +252,12 @@ def run_once(seed, method, init, cfg_path, weight_path, iter_max, device, output
     if init=="dflow":
         # use FBP to obtain the rough estimate x_fbp of y, and then reverse the ODE (t=1→0) to obtain the backward sample z0
         t_rev = torch.linspace(1,0,STEPS,device=device)
-        z0    = ODESolver(velocity_model=wrapped).sample(
+        z0 = ODESolver(velocity_model=wrapped).sample(
             time_grid=t_rev,
             x_init=fbp,
             method="midpoint",
             step_size=1/STEPS,
-            enable_grad=False
-        ).detach().requires_grad_(True)
+            enable_grad=False).detach().requires_grad_(True)
     else:
         z0 = torch.randn_like(x_gt, device=device, requires_grad=True)
 
@@ -232,19 +286,37 @@ def run_once(seed, method, init, cfg_path, weight_path, iter_max, device, output
             peak = torch.cuda.max_memory_allocated()/(1024**3)
             print(f"[seed={seed}] Adjoint Peak GPU memory: {peak:.2f} GB")
     
+
     od_seed = os.path.join(output_dir, f"{method}_{init}", f"seed{seed}")
     os.makedirs(od_seed, exist_ok=True)
-    plt.figure(); plt.plot(losses); plt.xlabel('Iteration'); plt.ylabel('Loss'); plt.title(f'{method}_{init} loss'); plt.savefig(os.path.join(od_seed,'loss.png')); plt.close()
-    plt.figure(); plt.plot(psnrs); plt.xlabel('Iteration'); plt.ylabel('PSNR (dB)'); plt.title(f'{method}_{init} PSNR'); plt.savefig(os.path.join(od_seed,'psnr.png')); plt.close()
+    save_curve_arrays(od_seed, losses, psnrs, z_norms)
 
-    # save z-norm curve
+    # PSNR
+    plt.figure(); plt.plot(psnrs)
+    plt.xlabel('Iteration'); plt.ylabel('PSNR (dB)')
+    plt.title(f'{method}_{init} PSNR (seed{seed})')
+    plt.tight_layout()
+    plt.savefig(os.path.join(od_seed,'psnr.png')); plt.close()
+
+    # log-loss
+    eps = 1e-8
+    log_losses = np.log10(np.array(losses, dtype=float) + eps)
+    plt.figure(); plt.plot(log_losses)
+    plt.xlabel('Iteration'); plt.ylabel('log10(loss)')
+    plt.title(f'{method}_{init} log-loss (seed{seed})')
+    plt.tight_layout()
+    plt.savefig(os.path.join(od_seed,'log_loss.png')); plt.close()
+
+    # z-norm
     plt.figure(); plt.plot(z_norms)
-    plt.xlabel('Iteration'); plt.ylabel('||z|| (L2)'); plt.title(f'{method}_{init} z-norm')
+    plt.xlabel('Iteration'); plt.ylabel('||z|| (L2)')
+    plt.title(f'{method}_{init} z-norm (seed{seed})')
+    plt.tight_layout()
     plt.savefig(os.path.join(od_seed, 'z_norm.png')); plt.close()
 
-    gt_np  = x_gt.cpu().numpy().squeeze()
+    gt_np = x_gt.cpu().numpy().squeeze()
     rec_np = rec.cpu().numpy().squeeze()
-    out    = np.concatenate([gt_np, fbp_np, rec_np], axis=1)
+    out = np.concatenate([gt_np, fbp_np, rec_np], axis=1)
     od_seed = os.path.join(output_dir, f"{method}_{init}", f"seed{seed}")
     os.makedirs(od_seed, exist_ok=True)
     plt.imsave(os.path.join(od_seed, "images.png"), out, cmap="gray")
@@ -264,8 +336,7 @@ def main():
     p.add_argument("--cfg_path", type=str, default="flow_matching_ct.yaml")
     p.add_argument("--weight_path",type=str, default="flow_matching_ct.pt")
     p.add_argument("--device", choices=["cpu","cuda"], default=DEVICE_DEF)
-    p.add_argument("--output_dir", type=str, default="results",
-                   help="output path")
+    p.add_argument("--output_dir", type=str, default="results", help="output path")
     args = p.parse_args()
 
     seeds = [int(s) for s in args.seeds.split(",")]
@@ -300,6 +371,8 @@ def main():
     summary_path = os.path.join(args.output_dir, f"summary_{args.method}_{args.init}.csv")
     df.to_csv(summary_path, index=False)
     print("Summary saved to", summary_path)
+
+    plot_aggregate_curves(args.output_dir, args.method, args.init, seeds)
 
 if __name__=="__main__":
     main()

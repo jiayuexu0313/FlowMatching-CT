@@ -2,6 +2,7 @@
 
 This repository implements and extends **flow-matching-based** models for **Computed Tomography (CT) reconstruction**.  
 It adapts the [`flow_matching`](https://github.com/facebookresearch/flow_matching) package and integrates it with a finite-angle CT Radon operator for inverse problem solving.
+The baseline code was provided by Alexander Denker.
 
 ---
 
@@ -33,7 +34,7 @@ It adapts the [`flow_matching`](https://github.com/facebookresearch/flow_matchin
 ## 3. Training Flow Matching Model
 
 ### Script
-`train_flow_ct.py` — adapted from `train_flow_matching.py` in **NeuralLatentInversion** (send by Alex).
+`train_flow_ct.py`
 
 **Model Config (`model_cfg`):**
 ```python
@@ -74,7 +75,7 @@ model_cfg = {
 
 ## 4. Latent Variable Optimization
 
-Adapted `flow_latent_opt.py` and `flow_latent_opt_adjoint.py` from NeuralLatentInversion:
+Adapted `flow_latent_opt.py` and `flow_latent_opt_adjoint.py` from baselinecode:
 
 * Replaced MNIST dataset with CT dataset.
 * Replaced forward operator with finite-angle CT Radon transform:

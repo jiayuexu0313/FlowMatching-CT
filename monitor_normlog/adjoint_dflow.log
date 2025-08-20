@@ -1,39 +1,39 @@
-[Adjoint] iter 200/1000: loss=2.045e+04, PSNR=31.40, ||z||=127.379
-[Adjoint] iter 400/1000: loss=2.365e+04, PSNR=29.58, ||z||=128.189
-[Adjoint] iter 600/1000: loss=1.960e+04, PSNR=32.28, ||z||=128.154
-[Adjoint] iter 800/1000: loss=2.321e+04, PSNR=29.27, ||z||=128.455
-[Adjoint] iter 1000/1000: loss=2.426e+04, PSNR=28.81, ||z||=128.959
+[Adjoint] iter 200/1000: loss=2.093e+04, PSNR=31.07, ||z||=127.458
+[Adjoint] iter 400/1000: loss=2.544e+04, PSNR=29.18, ||z||=125.584
+[Adjoint] iter 600/1000: loss=2.303e+04, PSNR=30.59, ||z||=125.498
+[Adjoint] iter 800/1000: loss=2.879e+04, PSNR=28.21, ||z||=125.359
+[Adjoint] iter 1000/1000: loss=3.450e+04, PSNR=30.69, ||z||=125.710
 [seed=0] Adjoint Peak GPU memory: 0.67 GB
-[seed=0] PSNR=28.81dB  SSIM=0.8404
-[Adjoint] iter 200/1000: loss=1.806e+04, PSNR=26.54, ||z||=133.438
-[Adjoint] iter 400/1000: loss=2.265e+05, PSNR=19.62, ||z||=126.943
-[Adjoint] iter 600/1000: loss=2.458e+04, PSNR=29.78, ||z||=125.522
-[Adjoint] iter 800/1000: loss=2.208e+04, PSNR=31.41, ||z||=125.414
-[Adjoint] iter 1000/1000: loss=2.136e+04, PSNR=32.01, ||z||=125.367
+[seed=0] PSNR=30.69dB  SSIM=0.8256
+[Adjoint] iter 200/1000: loss=1.808e+04, PSNR=26.57, ||z||=133.274
+[Adjoint] iter 400/1000: loss=3.796e+05, PSNR=22.81, ||z||=134.686
+[Adjoint] iter 600/1000: loss=2.257e+04, PSNR=29.28, ||z||=128.075
+[Adjoint] iter 800/1000: loss=2.401e+04, PSNR=28.85, ||z||=128.329
+[Adjoint] iter 1000/1000: loss=2.078e+04, PSNR=29.86, ||z||=129.067
 [seed=1] Adjoint Peak GPU memory: 0.71 GB
-[seed=1] PSNR=32.01dB  SSIM=0.8251
-[Adjoint] iter 200/1000: loss=2.161e+04, PSNR=30.48, ||z||=127.328
-[Adjoint] iter 400/1000: loss=1.809e+04, PSNR=33.86, ||z||=127.525
-[Adjoint] iter 600/1000: loss=1.710e+04, PSNR=34.03, ||z||=128.228
-[Adjoint] iter 800/1000: loss=1.765e+04, PSNR=33.82, ||z||=128.177
-[Adjoint] iter 1000/1000: loss=1.793e+04, PSNR=33.31, ||z||=128.190
+[seed=1] PSNR=29.86dB  SSIM=0.8520
+[Adjoint] iter 200/1000: loss=2.161e+04, PSNR=30.48, ||z||=127.316
+[Adjoint] iter 400/1000: loss=1.808e+04, PSNR=33.88, ||z||=127.519
+[Adjoint] iter 600/1000: loss=1.714e+04, PSNR=33.99, ||z||=128.230
+[Adjoint] iter 800/1000: loss=1.738e+04, PSNR=33.97, ||z||=128.214
+[Adjoint] iter 1000/1000: loss=1.965e+04, PSNR=33.06, ||z||=128.199
 [seed=42] Adjoint Peak GPU memory: 0.75 GB
-[seed=42] PSNR=33.31dB  SSIM=0.8896
-[Adjoint] iter 200/1000: loss=2.014e+04, PSNR=31.88, ||z||=127.442
-[Adjoint] iter 400/1000: loss=1.775e+04, PSNR=34.46, ||z||=127.503
-[Adjoint] iter 600/1000: loss=3.111e+05, PSNR=18.66, ||z||=130.138
-[Adjoint] iter 800/1000: loss=2.713e+04, PSNR=27.98, ||z||=126.503
-[Adjoint] iter 1000/1000: loss=2.305e+04, PSNR=30.04, ||z||=126.328
+[seed=42] PSNR=33.06dB  SSIM=0.8907
+[Adjoint] iter 200/1000: loss=2.029e+04, PSNR=31.94, ||z||=127.421
+[Adjoint] iter 400/1000: loss=3.907e+04, PSNR=26.41, ||z||=130.531
+[Adjoint] iter 600/1000: loss=2.243e+04, PSNR=30.81, ||z||=124.978
+[Adjoint] iter 800/1000: loss=2.088e+04, PSNR=32.37, ||z||=124.975
+[Adjoint] iter 1000/1000: loss=3.875e+04, PSNR=25.74, ||z||=125.992
 [seed=123] Adjoint Peak GPU memory: 0.79 GB
-[seed=123] PSNR=30.04dB  SSIM=0.8149
+[seed=123] PSNR=25.74dB  SSIM=0.7631
 [Adjoint] iter 200/1000: loss=2.789e+04, PSNR=27.47, ||z||=127.193
-[Adjoint] iter 400/1000: loss=1.882e+04, PSNR=31.53, ||z||=128.216
-[Adjoint] iter 600/1000: loss=2.460e+04, PSNR=30.72, ||z||=128.262
-[Adjoint] iter 800/1000: loss=2.420e+04, PSNR=29.90, ||z||=128.297
-[Adjoint] iter 1000/1000: loss=1.956e+04, PSNR=31.39, ||z||=128.510
+[Adjoint] iter 400/1000: loss=1.885e+04, PSNR=31.47, ||z||=128.260
+[Adjoint] iter 600/1000: loss=2.044e+04, PSNR=31.09, ||z||=128.334
+[Adjoint] iter 800/1000: loss=3.216e+04, PSNR=32.03, ||z||=128.392
+[Adjoint] iter 1000/1000: loss=3.736e+04, PSNR=29.91, ||z||=128.464
 [seed=3407] Adjoint Peak GPU memory: 0.83 GB
-[seed=3407] PSNR=31.39dB  SSIM=0.8727
+[seed=3407] PSNR=29.91dB  SSIM=0.8545
 === adjoint + dflow ===
-PSNR mean=31.11  std=1.56
-SSIM mean=0.8485  std=0.0283
-Summary saved to monitor_norm/adjoint_dflow/summary_adjoint_dflow.csv
+PSNR mean=29.85  std=2.36
+SSIM mean=0.8372  std=0.0425
+Summary saved to 810/adjoint_dflow/summary_adjoint_dflow.csv
