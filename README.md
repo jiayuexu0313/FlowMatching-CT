@@ -1,8 +1,9 @@
 # CT Reconstruction with Flow Matching based model
 
 This repository implements and extends **flow-matching-based** models for **Computed Tomography (CT) reconstruction**.  
-It adapts the [`flow_matching`](https://github.com/facebookresearch/flow_matching) package and integrates it with a finite-angle CT Radon operator for inverse problem solving.
-The baseline code was provided by Alexander Denker.
+It adapts the [`flow_matching`](https://github.com/facebookresearch/flow_matching) package and integrates it with a finite-angle CT Radon operator for inverse problem solving.  
+The baseline code was provided by Alexander Denker.  
+You can refer to the .sh script(s) in my project folder (e.g., 4methods.sh) to see how to run the corresponding code.
 
 ---
 
